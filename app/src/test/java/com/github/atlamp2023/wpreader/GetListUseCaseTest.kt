@@ -22,11 +22,9 @@ class GetListUseCaseTest {
             ListItem(1, "test", "preview", "localhost"),
             ListItem(2, "test2", "preview2", "localhost")
         )
-        Mockito.`when`(mockRepository.getListRemoteAsync()).thenReturn(
-            CoroutineScope(Dispatchers.Unconfined).async {
-                testListReturn
-            }
-        )
+        runBlocking {
+            Mockito.`when`(mockRepository.getListRemoteAsync()).thenReturn(testListReturn)
+        }
 
         val useCase = GetListUseCase(mockRepository)
 
