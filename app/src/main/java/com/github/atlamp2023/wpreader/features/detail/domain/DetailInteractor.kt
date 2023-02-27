@@ -13,9 +13,9 @@ class DetailInteractor(private val getDetailUseCase: GetDetailUseCase) {
 
     suspend fun getDetail(state: State?, id :Int): Detail {
         val result = try {
-            val raw_result = getDetailUseCase.execute(state, id)
-            // val new_result = raw_result.copy()
-            Result.Success<DetailItem>(raw_result)
+            val rawResult = getDetailUseCase.execute(state, id)
+            // val newResult = rawResult.copy()
+            Result.Success<DetailItem>(rawResult)
         }catch (e: Exception) {
             Log.d(TAG, "$e")
             Result.Error<DetailItem>(error = e)

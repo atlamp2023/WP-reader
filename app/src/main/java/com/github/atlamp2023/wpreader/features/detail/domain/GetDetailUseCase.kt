@@ -7,7 +7,7 @@ import java.lang.IllegalArgumentException
 class GetDetailUseCase(private val repository: com.github.atlamp2023.wpreader.features.detail.data.DetailRepository) {
     suspend fun execute(state: State?, id: Int): DetailItem {
         val result = when(state){
-            State.REMOTE -> repository.getDetailRemoteAsync(id).await()
+            State.REMOTE -> repository.getDetailRemoteAsync(id)
             State.LOCAL -> throw IllegalArgumentException("State.LOCAL -> haven't implementation yet")
             else -> throw IllegalArgumentException("State can't be null")
         }

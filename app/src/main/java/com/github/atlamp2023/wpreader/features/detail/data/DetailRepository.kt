@@ -6,8 +6,8 @@ import kotlinx.coroutines.*
 class DetailRepository(private val remote:RemoteDetailSource,
                        private val local: LocalDetailSource
 ) {
-    fun getDetailRemoteAsync(id: Int): Deferred<DetailItem> = CoroutineScope(Dispatchers.IO).async {
+    suspend fun getDetailRemoteAsync(id: Int): DetailItem = CoroutineScope(Dispatchers.IO).async {
         val detail = remote.getPostById(id)
         return@async detail
-    }
+    }.await()
 }
